@@ -5,7 +5,7 @@ const browserSync = require("browser-sync").create();
 const clean = require("gulp-clean");
 
 function styles() {
-  return src("app/css/style.css")
+  return src("src/css/style.css")
     .pipe(concat("style.min.css"))
     .pipe(cleanCSS())
     .pipe(dest("app/css"))
@@ -14,14 +14,14 @@ function styles() {
 
 // Автоматичне оновлення браузера
 function watching() {
-  watch("app/css/style.css", styles);
-  watch("app/*.html").on("change", browserSync.reload);
+  watch("src/css/style.css", styles);
+  watch("src/*.html").on("change", browserSync.reload);
 }
 
 function browsersync() {
   browserSync.init({
     server: {
-      baseDir: "app/",
+      baseDir: "src/",
     },
   });
 }
@@ -31,8 +31,8 @@ function cleanDist() {
 }
 
 function building() {
-  return src(["app/css/style.min.css", "app/**/*.html", "app/images/**/*"], {
-    base: "app",
+  return src(["src/css/style.min.css", "src/**/*.html", "src/images/**/*"], {
+    base: "src",
   }).pipe(dest("dist"));
 }
 
