@@ -8,7 +8,7 @@ function styles() {
   return src("src/css/style.css")
     .pipe(concat("style.min.css"))
     .pipe(cleanCSS())
-    .pipe(dest("app/css"))
+    .pipe(dest("src/css"))
     .pipe(browserSync.stream());
 }
 
